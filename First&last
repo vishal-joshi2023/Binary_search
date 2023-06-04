@@ -1,0 +1,130 @@
+#include <bits/stdc++.h> 
+//lower Bound =  first pos ,upperbound -1 = last pos
+int lowerBound(vector<int>& arr, int n, int x) {
+	//lower bound = Ceil (ind)
+	int s = 0;
+	int e = n-1;
+    int ind = n;
+ 
+	while(s<=e){
+		int mid = (e+s)/2;
+
+                if (arr[mid] >= x) {
+                  ind = mid;
+                  e = mid - 1;
+                } else
+                  s = mid + 1;
+    }
+    return ind; 
+}
+int upperBound(vector<int>& arr, int n, int x) {
+	//upper bound 
+	int s = 0;
+	int e = n-1;
+    int ind = n;
+ 
+	while(s<=e){
+		int mid = (e+s)/2;
+
+                if (arr[mid] >x) {
+                  ind = mid;
+                  e = mid - 1;
+                } else
+                  s = mid + 1;
+    }
+    return ind; 
+}
+
+int firstPos(vector<int>& arr, int n, int x) {
+	//upper bound 
+	int s = 0;
+	int e = n-1;
+    int ind = n;
+ 
+	while(s<=e){
+	  int mid = (e+s)/2;
+      
+      if(arr[mid]==x){
+          ind = mid;
+          e = mid-1;
+      }
+      else if(arr[mid]<x)
+         s = mid+1;
+      else
+         e = mid-1 ;  
+    }
+
+    return ind; 
+}
+
+int lastPos(vector<int>& arr, int n, int x) {
+	//upper bound 
+	int s = 0;
+	int e = n-1;
+    int ind = n;
+ 
+	while(s<=e){
+	  int mid = (e+s)/2;
+      
+      if(arr[mid]==x){
+          ind = mid;
+          s = mid+1;
+      }
+      else if(arr[mid]<x)
+         s = mid+1;
+      else
+         e = mid-1  ; 
+    }
+
+    return ind; 
+}
+// Erricto
+ int pos(vector<int>& arr,int n ,int key)
+    {
+       int l = 0;
+       int h = n-1;
+       int mid;
+       int index = arr.size();
+       while(l<=h){
+            mid=l+(h-l)/2;
+            if(arr[mid] >= key)
+            {
+               index = mid;
+               h = mid-1; 
+            }
+            else
+                l = mid+1;
+        }
+        return index;
+    }
+pair<int, int> firstAndLastPosition(vector<int>& nums, int n, int k)
+{
+
+        // int fp=-1,lp=-1;
+
+        // fp = pos(nums,n,k);
+        // lp = pos(nums,n,k+1)-1;
+
+        // if(fp<=lp)
+        //   return {fp,lp};
+    
+        // return {-1,-1};
+
+        // 1 lowe/upper
+        // int fp = lowerBound(nums,n,k);
+
+        // if(fp==n || nums[fp]!=k) return {-1,-1};
+
+        // int lp = upperBound(nums,n,k)-1;
+
+        // return {fp,lp};
+
+        // 2 binary search with modi same fun twice
+        int fp = firstPos(nums,n,k);
+
+        if(fp==n) return {-1,-1};
+
+        int lp = lastPos(nums,n,k);
+
+        return {fp,lp};
+} 

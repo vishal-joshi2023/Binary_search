@@ -85,8 +85,8 @@ pair<int, int> firstAndLastPosition(vector<int>& nums, int n, int k)
         // Erricto lowerBound 1 fun only
         // int fp=-1,lp=-1;
 
-        // fp = pos(nums,n,k);
-        // lp = pos(nums,n,k+1)-1;
+        // fp = lowerBound(nums,n,k);
+        // lp = lowerBound(nums,n,k+1)-1;
 
         // if(fp<=lp)
         //   return {fp,lp};

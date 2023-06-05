@@ -8,10 +8,18 @@
    while(low<=high){
 
        int mid = (low+high)/2;
-
+       
        if(arr[mid] == key) 
           return mid;
-
+          
+       // if arry contains duplicates then shrink searvh space
+       if(arr[low] == arr[mid] && arr[mid] == arr[high]} 
+       {
+         low++;
+         high--;
+         continue;
+       }
+       
        else if(arr[low] <= arr[mid]) {
          if(arr[low] <= key && key <= arr[mid]) // go left
            high = mid - 1; 

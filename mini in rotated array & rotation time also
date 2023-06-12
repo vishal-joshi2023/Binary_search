@@ -18,3 +18,5 @@ int findMin(vector<int>& arr)
 	}
 	return minEle;
 }
+
+// for rotation no -> index 0 till mini ele thats it

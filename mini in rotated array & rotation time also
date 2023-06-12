@@ -20,3 +20,30 @@ int findMin(vector<int>& arr)
 }
 
 // for rotation no -> index 0 till mini ele thats it
+int findMinIndex(vector<int>& arr)
+{
+	int s=0;
+	int mini = 0;
+	int e = arr.size()-1;
+	
+	while(s<=e){
+		
+		int mid = (s+e)/2;
+		
+		// if sorted pick mini bca mini of left go to right
+		if(arr[mid]>=arr[s]){
+          if(arr[mini]>arr[s])
+		    mini = s;
+           
+		  s = mid+1;
+		}
+        else{
+		  if(arr[mini]>arr[mid])
+		    mini = mid;
+
+		  e = mid-1;
+		}
+	}
+	return mini;
+}
+

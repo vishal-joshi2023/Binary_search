@@ -1,0 +1,44 @@
+// 3rd root of 27 = 3 (3*3*3)
+
+// 1 -> exact nth root
+// 0 -> lesser
+// 2 -> grater
+
+int nthRoot(int n,int m, long long mid){
+  
+  // n=3 m=27 mid = 2/3/4/
+
+  long long ans = 1;
+  for(int i=1;i<=n ;i++){
+     ans *= mid;
+
+     if(ans > m) // 3*3*3 > 27
+       return 2;
+  }
+
+  if(ans==m) return 1;
+  return 0; 
+}
+
+int NthRoot(int n, int m) {
+  
+    long low = 1;
+    long high = m;
+    
+    while(low<=high){
+
+       long long mid = (low+high)/2;
+       
+       int flag = nthRoot(n,m,mid);
+
+       if(flag == 1) return mid;
+
+       if(flag==0)
+          low = mid+1;
+       else 
+          high = mid-1;
+    }
+
+  return -1;
+
+}

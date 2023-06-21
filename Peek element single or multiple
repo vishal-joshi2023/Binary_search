@@ -1,0 +1,27 @@
+int findPeakElement(vector<int> &arr) {
+   
+   int n = arr.size();
+   
+   if(n==1) return 0;
+
+   if(arr[0]>arr[1]) return 0;
+   if(arr[n-1]>arr[n-1]) return n-1;
+
+   int l = 0;
+   int h = n-1;
+
+   while(l<=h){
+
+     int mid = (l+h)/2;
+
+     if(arr[mid]>arr[mid-1] && arr[mid]>arr[mid+1])
+       return mid;
+
+     if(arr[mid] > arr[mid-1])// inc Ciurve
+       l = mid+1;
+     else 
+       h = mid-1; 
+   } 
+
+   return -1;
+}

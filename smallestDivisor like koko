@@ -1,0 +1,29 @@
+#include<bits/stdc++.h>
+int fun(vector<int> &v,int d){
+    
+    int sum = 0;
+    for(int p : v){
+        sum += ceil((double)p/(double)d);
+    }
+    return (int)sum;
+}
+int smallestDivisor(vector<int>& v, int t)
+{
+	 if(v.size() > t) return -1;
+
+    int l=1;
+    int h= *max_element(v.begin(), v.end());
+
+    while(l<=h){
+        int mid = (l+h)/2;
+
+        int op = fun(v,mid);
+
+        if(op <= t){
+            h = mid-1;
+        }
+        else l = mid+1;
+    }
+
+    return l;
+}

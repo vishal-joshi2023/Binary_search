@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+int fun(vector<int> &v,int b){
+    
+    int totalTime = 0;
+    for(int pile : v){
+        totalTime += ceil((double)pile/(double)b);
+    }
+    return (int)totalTime;
+}
+int minimumRateToEatBananas(vector<int> &v, int hour) {
+    
+    int l=1;
+    int h= *max_element(v.begin(), v.end());
+    int minBanana = 0;
+    while(l<=h){
+        int mid = (l+h)/2;
+
+        int time = fun(v,mid);
+
+        if(time <= hour){
+            minBanana = mid;
+            h = mid-1;
+        }
+        else l = mid+1;
+    }
+
+    return minBanana;
+}

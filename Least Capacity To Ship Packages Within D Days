@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+
+bool isOk(vector<int> &arr, int d,int currCap){
+     
+     int days = 0;
+     int w=0;
+     for(int &weight : arr){
+        w += weight;                 
+        if(w>currCap){
+            days++;
+            w=weight;
+        }
+     }
+     
+     // last days count 
+     days++;
+
+     return days<=d;
+}
+int leastWeightCapacity(vector<int> &arr, int d)
+{
+    int l = *max_element(arr.begin(),arr.end());
+    int h = accumulate(arr.begin(),arr.end(),0);
+
+    while(l<=h){
+        // mid == capacity  
+        int mid = (l+h)/2;
+ 
+        if(isOk(arr,d,mid)){
+           h = mid-1; 
+        }else l = mid+1;
+    }
+}

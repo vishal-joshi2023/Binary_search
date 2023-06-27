@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+
+int missingK(vector < int > vec, int n, int k) {
+    // brute O(N)
+    // k=5 -> if ele < k -> k++ else break
+    // for(int i:vec){
+    //     if(i<=k)
+    //      k++;
+    //     else break; 
+    // }
+    // return k;
+
+    
+    // first make missing record at each index
+    // search for missing location
+    int s=0;
+    int e=n-1;
+     while(s<=e){
+
+        int mid = (s+e)/2;
+        int val = vec[mid] - (mid+1); // record missing till index
+
+        if(val < k ){
+            s = mid + 1;
+        }else{
+            e = mid - 1;
+        }
+    }
+
+    return e+1+k; //missing number
+}
